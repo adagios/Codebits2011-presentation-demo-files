@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+        <meta charset="UTF-8">
+        <title>An Example of REST+MVP</title>
+   </head>
+   <body>
+      <button id="add-btn">Add</button>
+      <button id="clear-btn">Clear and Load</button>
+
+      <ul id="list-of-stuff"/>
+
+   </body>
+   <script type="text/javascript" src="js/lib/jquery-1.6.js"></script>
+
+   <script type="text/javascript" src="js/model.js"></script>
+   <script type="text/javascript" src="js/view.js"></script>
+   <script type="text/javascript" src="js/presenter.js"></script>
+
+   <script type="text/javascript">
+      App = (function(){
+            var _$events = $({}); 
+
+            return {
+               subscribe: function(event, fn) {
+                  _$events.bind(event, fn);
+               },
+               unsubscribe: function(event, fn) {
+                  _$events.unbind(event, fn);
+               },
+               publish: function(event, ops) {
+                  _$events.trigger(event, ops);
+               }
+            }
+      }());
+
+      $(document).ready(function(){
+            presenter = Presenter();
+      });
+   </script>
+</html>
